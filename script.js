@@ -1,5 +1,4 @@
-const startDate = new Date('2023-11-17T17:40:00');
-const twoYearMilestone = new Date('2025-11-19T00:00:00');
+const startDate = new Date('2023-11-19T00:00:00');
 let celebrationShown = false;
 
 function updateCountdown() {
