@@ -1,4 +1,4 @@
-const startDate = new Date('2023-11-17T14:19:00');
+const startDate = new Date('2023-11-17T17:40:00');
 const twoYearMilestone = new Date('2025-11-19T00:00:00');
 let celebrationShown = false;
 
@@ -74,18 +74,13 @@ function updateCountdown() {
       }
     }
     
-    console.log("years:", years);
-    
-    
-  
-
     // Update display
-    document.getElementById('years').textContent = years;
-    document.getElementById('months').textContent = months;
-    document.getElementById('days').textContent = days;
-    document.getElementById('hours').textContent = hours;
-    document.getElementById('minutes').textContent = minutes;
-    document.getElementById('seconds').textContent = seconds;
+    document.querySelectorAll('[countdown="years"]').forEach(el => el.textContent = years);
+    document.querySelectorAll('[countdown="months"]').forEach(el => el.textContent = months);
+    document.querySelectorAll('[countdown="days"]').forEach(el => el.textContent = days);
+    document.querySelectorAll('[countdown="hours"]').forEach(el => el.textContent = hours);
+    document.querySelectorAll('[countdown="minutes"]').forEach(el => el.textContent = minutes);
+    document.querySelectorAll('[countdown="seconds"]').forEach(el => el.textContent = seconds);
 
     // Check if we've hit the 2-year milestone
     if (years >= 2 && !celebrationShown) {
@@ -96,6 +91,7 @@ function updateCountdown() {
 
 function showCelebration() {
     document.getElementById('celebration').classList.add('active');
+    createFloatingHearts('floating-hearts-2', 100);
     createConfetti();
 }
 
@@ -119,8 +115,8 @@ function createConfetti() {
     }
 }
 
-function createFloatingHearts() {
-    const heartsContainer = document.getElementById('floating-hearts');
+function createFloatingHearts(containerId, timeout) {
+    const heartsContainer = document.getElementById(containerId);
     const hearts = ['💕', '💖', '💝', '💗', '💓', '💞'];
     
     setInterval(() => {
@@ -132,10 +128,10 @@ function createFloatingHearts() {
         heartsContainer.appendChild(heart);
         
         setTimeout(() => heart.remove(), 7000);
-    }, 2000);
+    }, timeout);
 }
 
 // Initialize
 updateCountdown();
 setInterval(updateCountdown, 1000);
-createFloatingHearts();
+createFloatingHearts('floating-hearts', 2000);
