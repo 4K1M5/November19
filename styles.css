@@ -123,6 +123,7 @@ h1 {
 .celebration-content {
     text-align: center;
     z-index: 1001;
+    width: 100%;
 }
 
 .celebration-content h1 {
